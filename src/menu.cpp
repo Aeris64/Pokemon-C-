@@ -2,22 +2,9 @@
 #include "Pokemon.h"
 #include "Attack.h"
 
-Type::Type()
+Menu::Menu()
 {
-    this->id = 0;
-    this->nom = "";
-}
 
-Type::Type(int32_t id, std::string nom)
-{
-    this->id = id;
-    this->nom = nom;
-}
-
-Type::Type(Type const& type)
-{
-    this->id = type.id;
-    this->nom = type.nom;
 }
 
 /* getters */
