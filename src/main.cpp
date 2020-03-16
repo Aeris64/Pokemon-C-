@@ -11,8 +11,14 @@ int main(int argc, char *argv[]) {
 
 	Menu* play = initPokedex();
 	int choice;
+	int idisplay;
 
 	play->getIntro();
+
+	for(int j = 0 ; j < 3 ; j++){
+		Pokemon* randomBeginsPokemon = play->getRandomPokemon();
+		play->getPlayer()->addPokemonAll(randomBeginsPokemon);
+	}
 
 	do{
 
@@ -29,14 +35,16 @@ int main(int argc, char *argv[]) {
 		switch(choice){
 			case 1:
 				for(int i = 0 ; i<play->getPlayer()->getPokemonAll().size() ; i++){
+					idisplay = i + 1;
 					Pokemon* actualPokemon = play->getPlayer()->getPokemonAll(i);
-					std::cout << i << " " << actualPokemon->toString() << std::endl;
+					std::cout << "(" << idisplay << ")" << " " << actualPokemon->toString() << std::endl;
 				}
 				break;
 			case 2:
 				for(int i = 0 ; i<play->getPlayer()->getPokemonTeam().size() ; i++){
+					idisplay = i + 1;
 					Pokemon* actualPokemon = play->getPlayer()->getPokemonTeam(i);
-					std::cout << i << " " << actualPokemon->toString() << std::endl;
+					std::cout << "(" << idisplay << ")" << " " << actualPokemon->toString() << std::endl;
 				}
 				break;
 			case 3:
