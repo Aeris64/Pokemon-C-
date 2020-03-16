@@ -54,12 +54,12 @@ Attack* Menu::getRandomAttack(){
     return getAttack(random);
 }
 
-// Attack* Menu::getRandomAttackByType(Type type){
-//     int32_t size = this->allAttacks.size();
-//     int32_t random = rand() % size;
+Attack* Menu::getRandomAttack(Type type){
+    int32_t size = this->allAttacks.size();
+    int32_t random = rand() % size;
 
-//     return getAttack(random);
-// }
+    return getAttack(random);
+}
 
 Pokemon* Menu::getRandomPokemon(){
     DBPokemon* nationPokemon = getRandomDBPokemon();
@@ -78,7 +78,7 @@ Pokemon* Menu::getRandomPokemon(){
     return new Pokemon(nationPokemon->getId(), nationPokemon->getNom(), pv, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], nationPokemon->getType());
 }
 
-Pokemon* Menu::createRandomPokemon(DBPokemon dbPokemon){
+Pokemon* Menu::getRandomPokemon(DBPokemon dbPokemon){
     int32_t pv = rand() % 100 + 100;
     int32_t atk = rand() % 100;
     int32_t atkSp = rand() % 100;

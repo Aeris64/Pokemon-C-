@@ -31,10 +31,10 @@ public:
     DBPokemon* getRandomDBPokemon();
     Type* getRandomType();
     Attack* getRandomAttack();
-    Attack* getRandomAttackByType(Type type);
+    Attack* getRandomAttack(Type type);
 
     Pokemon* getRandomPokemon();
-    Pokemon* createRandomPokemon(DBPokemon dbPokemon);
+    Pokemon* getRandomPokemon(DBPokemon dbPokemon);
 
     /* setters */
     void addPokemon(void* dbPokemon);
