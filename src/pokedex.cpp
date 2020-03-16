@@ -6,7 +6,7 @@
 #include "Type.h"
 #include "Menu.h"
 
-void initPokedex() {
+Menu* initPokedex() {
 
 
 Menu* play = new Menu();
@@ -26,7 +26,19 @@ Type* insecte = new Type(11, "Insecte");
 Type* acier = new Type(12, "Acier");
 Type* spectre = new Type(13, "Spectre");
 
-play->addType(eau)
+play->addType(eau);
+play->addType(feu);
+play->addType(plante);
+play->addType(elec);
+play->addType(psy);
+play->addType(tenebre);
+play->addType(dragon);
+play->addType(normal);
+play->addType(sol);
+play->addType(vol);
+play->addType(insecte);
+play->addType(acier);
+play->addType(spectre);
 
 //(id, nom, puissance, pp, accuracy, type)
 Attack* skill1 = new Attack(1,"Charge",20,30,90,normal);
@@ -37,8 +49,17 @@ Attack* skill5 = new Attack(5,"Choc mental",20,30,90,psy);
 Attack* skill6 = new Attack(6,"Feinte",20,30,90,tenebre);
 Attack* skill7 = new Attack(7,"Eclair",20,30,90,elec);
 Attack* skill8 = new Attack(8,"Draco-Flèches",20,30,90,dragon);
-Attack* skill9 = new Attack(9,"Draco Météores",100,5,70, dragon);
-Attack* skill10 =
+Attack* skill9 = new Attack(9,"Draco Météores",100,5,70,dragon);
+
+play->addAttack(skill1);
+play->addAttack(skill2);
+play->addAttack(skill3);
+play->addAttack(skill4);
+play->addAttack(skill5);
+play->addAttack(skill6);
+play->addAttack(skill7);
+play->addAttack(skill8);
+play->addAttack(skill9);
 
 //(id, nom, type)
 DBPokemon* no1 = new DBPokemon(1, "Salameche", feu);
@@ -65,5 +86,29 @@ DBPokemon* no21 = new DBPokemon(21, "Altaria", vol);
 DBPokemon* no22 = new DBPokemon(22, "Milobellus", eau);
 DBPokemon* no23 = new DBPokemon(23, "Branette", spectre);
 
+play->addPokemon(no1);
+play->addPokemon(no2);
+play->addPokemon(no3);
+play->addPokemon(no4);
+play->addPokemon(no5);
+play->addPokemon(no6);
+play->addPokemon(no7);
+play->addPokemon(no8);
+play->addPokemon(no9);
+play->addPokemon(no10);
+play->addPokemon(no11);
+play->addPokemon(no12);
+play->addPokemon(no13);
+play->addPokemon(no14);
+play->addPokemon(no15);
+play->addPokemon(no16);
+play->addPokemon(no17);
+play->addPokemon(no18);
+play->addPokemon(no19);
+play->addPokemon(no20);
+play->addPokemon(no21);
+play->addPokemon(no22);
+play->addPokemon(no23);
 
+return play;
 }
