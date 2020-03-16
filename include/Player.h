@@ -5,23 +5,23 @@
 
 class Player {
 private:
-    int id;
+    int32_t id;
     std::string nom;
     // Liste pokémon capturé
     // Liste pokémon team
 
 public:
     Player();
-    Player(int id, std::string nom);
+    Player(int32_t id, std::string nom);
     Player(Player const& player);
     ~Player();
 
     /* getters */
-    int getId();
+    int32_t getId();
     std::string getNom();
     
     /* setters */
-    void setId(int id);
+    void setId(int32_t id);
     void setNom(std::string nom);
 
     std::string toString();
