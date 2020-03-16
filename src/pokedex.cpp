@@ -42,14 +42,14 @@ play->addType(spectre);
 
 //(id, nom, puissance, pp, accuracy, type)
 Attack* skill1 = new Attack(1,"Charge",20,30,90,normal);
-Attack* skill2 = new Attack(2,"Flammèche",20,30,90,feu);
-Attack* skill3 = new Attack(3,"Pistolet à O",20,30,90,eau);
+Attack* skill2 = new Attack(2,"Flammeche",20,30,90,feu);
+Attack* skill3 = new Attack(3,"Pistolet a O",20,30,90,eau);
 Attack* skill4 = new Attack(4,"Balle graine",20,30,90,plante);
 Attack* skill5 = new Attack(5,"Choc mental",20,30,90,psy);
 Attack* skill6 = new Attack(6,"Feinte",20,30,90,tenebre);
 Attack* skill7 = new Attack(7,"Eclair",20,30,90,elec);
-Attack* skill8 = new Attack(8,"Draco-Flèches",20,30,90,dragon);
-Attack* skill9 = new Attack(9,"Draco Météores",100,5,70,dragon);
+Attack* skill8 = new Attack(8,"Draco-Fleches",20,30,90,dragon);
+Attack* skill9 = new Attack(9,"Draco Meteores",100,5,70,dragon);
 
 play->addAttack(skill1);
 play->addAttack(skill2);
