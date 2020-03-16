@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Pokemon.h"
 #include "DBPokemon.h"
 
@@ -160,6 +161,23 @@ void Pokemon::setAtk3(Attack* atk3)
 void Pokemon::setAtk4(Attack* atk4)
 {
     this->atk4 = atk4;
+}
+
+float Pokemon::setDamage(Pokemon* pokemon, Attack* attack)
+{
+    int myDef = this->getDef();
+    int atk = attack->getPower()+pokemon->getAtk();
+    
+    std::cout << "atk: " << attack->getPower() << " " << pokemon->getAtk() << std::endl;
+    std::cout << "atk: " << atk << " - def: " << myDef << std::endl;
+
+    float final = atk - myDef;
+
+    if(final < 0)
+        return 0;
+
+    this->setPv(this->getPv()-final);
+    return final;
 }
 
 std::string Pokemon::toString()

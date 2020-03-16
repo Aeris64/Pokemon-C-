@@ -54,6 +54,7 @@ public:
     void setAtk2(Attack* atk2);
     void setAtk3(Attack* atk3);
     void setAtk4(Attack* atk4);
+    float setDamage(Pokemon* pokemon, Attack* attack);
 
     std::string toString();
 };
