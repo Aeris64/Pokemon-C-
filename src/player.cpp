@@ -93,6 +93,14 @@ void Player::setNom(std::string nom)
     this->nom = nom;
 }
 
+void Player::setPokemonTeam(int32_t index, Pokemon* pokemon){
+    this->teamPokemon[index] = pokemon;
+}
+
+void Player::setPokemonAll(int32_t index, Pokemon* pokemon){
+    this->myPokemon[index] = pokemon;
+}
+
 std::string Player::toString()
 {
     return "Player :\nnom: " + this->nom;

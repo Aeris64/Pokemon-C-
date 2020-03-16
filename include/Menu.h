@@ -20,6 +20,7 @@ public:
     Menu();
 
     bool Battle();
+    bool MyTeam();
 
     /* getters */
     std::vector<DBPokemon*> getAllPokemons();

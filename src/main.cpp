@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
 		std::cout << "[3] Partir dans les hautes herbes." << std::endl;
 		std::cout << "[4] Soigner les Pokemons." << std::endl;
 		std::cout << "[9] Exit" << std::endl;
+		std::cout << "______________________________________________________________________" << std::endl;
 
 		std::cin >> choice;
 
@@ -41,11 +42,12 @@ int main(int argc, char *argv[]) {
 				}
 				break;
 			case 2:
-				for(int i = 0 ; i<play->getPlayer()->getPokemonTeam().size() ; i++){
-					idisplay = i + 1;
-					Pokemon* actualPokemon = play->getPlayer()->getPokemonTeam(i);
-					std::cout << "(" << idisplay << ")" << " " << actualPokemon->toString() << std::endl;
-				}
+				play->MyTeam();
+				// for(int i = 0 ; i<play->getPlayer()->getPokemonTeam().size() ; i++){
+				// 	idisplay = i + 1;
+				// 	Pokemon* actualPokemon = play->getPlayer()->getPokemonTeam(i);
+				// 	std::cout << "(" << idisplay << ")" << " " << actualPokemon->toString() << std::endl;
+				// }
 				break;
 			case 3:
 				play->Battle();
@@ -57,8 +59,9 @@ int main(int argc, char *argv[]) {
 			default:
 				std::cout << "Choix invalide" << std::endl;
 				break;
-
 		}
+
+		std::cout << "______________________________________________________________________" << std::endl;
 
 	} while(choice != 9);
 

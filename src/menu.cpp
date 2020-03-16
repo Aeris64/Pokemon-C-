@@ -139,7 +139,7 @@ bool Menu::getIntro(){
 
 	std::cout << "Oh, tu as donc choisi " << pkmnName << "." << std::endl;
 	std::cout << "Bonne chance. Tu vas en avoir besoin." << std::endl;
-	std::cout << "___________________________________" << std::endl;
+	std::cout << "______________________________________________________________________" << std::endl;
 
     return 1;
 }
@@ -291,6 +291,50 @@ bool Menu::Battle(){
     } while(battlePokemon->getPv() > 0 && forceEnd != true);
 
     battlePokemon->toString();
+
+    return 1;
+}
+
+bool Menu::MyTeam(){
+    int idisplay;
+    std::string choice;
+    for(int i = 0 ; i<this->getPlayer()->getPokemonTeam().size() ; i++){
+        idisplay = i + 1;
+        Pokemon* actualPokemon = this->getPlayer()->getPokemonTeam(i);
+        std::cout << "(" << idisplay << ")" << " " << actualPokemon->toString() << std::endl;
+    }
+
+    std::cout << "Voulez vous echanger un pokemon de votre jardin a votre equipe actuelle ? (y/n)" << std::endl;
+    std::cin >> choice;
+
+    if(choice == "y"){
+        int switchNumber, chooseNumer;
+        std::cout << "Veuillez choisir le numero de votre pokemon a echanger." << std::endl;
+        std::cin >> switchNumber;
+        
+        std::cout << "Par lequel souhaitez-vous le remplacer ?." << std::endl;
+        for(int i = 0 ; i<this->getPlayer()->getPokemonAll().size() ; i++){
+            idisplay = i + 1;
+            Pokemon* actualPokemon = this->getPlayer()->getPokemonAll(i);
+            std::cout << "(" << idisplay << ")" << " " << actualPokemon->toString() << std::endl;
+        }
+        std::cout << "Veuillez choisir le numero de votre pokemon a echanger." << std::endl;
+        std::cin >> chooseNumer;
+
+        Pokemon* switchPokemon = this->getPlayer()->getPokemonTeam(switchNumber-1);
+        Pokemon* choosePokemon = this->getPlayer()->getPokemonAll(chooseNumer-1);
+
+        if(switchPokemon && choosePokemon){
+            this->getPlayer()->setPokemonTeam(switchNumber-1, choosePokemon);
+            this->getPlayer()->setPokemonAll(chooseNumer-1, switchPokemon);
+
+            return 1;
+        }
+
+    } else {
+        std::cout << "Annulation..." << std::endl;
+        return 0;
+    }
 
     return 1;
 }

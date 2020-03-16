@@ -31,6 +31,8 @@ public:
     /* setters */
     void setId(int32_t id);
     void setNom(std::string nom);
+    void setPokemonTeam(int32_t index, Pokemon* pokemon);
+    void setPokemonAll(int32_t index, Pokemon* pokemon);
 
     void addPokemonTeam(void* pokemon);
     void addPokemonAll(void* pokemon);
