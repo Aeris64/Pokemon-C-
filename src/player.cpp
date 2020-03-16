@@ -38,6 +38,50 @@ std::string Player::getNom()
     return this->nom;
 }
 
+Pokemon* Player::getPokemonTeam(int32_t index)
+{
+    return this->teamPokemon[index];
+}
+
+Pokemon* Player::getPokemonAll(int32_t index)
+{
+    return this->myPokemon[index];
+}
+
+std::vector<Pokemon*> Player::getPokemonTeam()
+{
+    return this->teamPokemon;
+}
+
+std::vector<Pokemon*> Player::getPokemonAll()
+{
+    return this->myPokemon;
+}
+
+#ifndef FORWARD_DECLARATION
+void Player::addPokemonTeam(void* pokemon)
+{
+    this->teamPokemon.push_back(reinterpret_cast<Pokemon*>(pokemon));
+}
+#else
+void Player::addPokemonTeam(Pokemon* pokemon)
+{
+    this->teamPokemon.push_back(pokemon);
+}
+#endif /* FORWARD_DECLARATION */
+
+#ifndef FORWARD_DECLARATION
+void Player::addPokemonAll(void* pokemon)
+{
+    this->myPokemon.push_back(reinterpret_cast<Pokemon*>(pokemon));
+}
+#else
+void Player::addPokemonAll(Pokemon* pokemon)
+{
+    this->myPokemon.push_back(pokemon);
+}
+#endif /* FORWARD_DECLARATION */
+
 /* setters */
 void Player::setId(int32_t id)
 {

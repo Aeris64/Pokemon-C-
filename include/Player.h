@@ -22,10 +22,18 @@ public:
     /* getters */
     int32_t getId();
     std::string getNom();
+    Pokemon* getPokemonTeam(int32_t index);
+    Pokemon* getPokemonAll(int32_t index);
+
+    std::vector<Pokemon*> getPokemonTeam();
+    std::vector<Pokemon*> getPokemonAll();
     
     /* setters */
     void setId(int32_t id);
     void setNom(std::string nom);
+
+    void addPokemonTeam(void* pokemon);
+    void addPokemonAll(void* pokemon);
 
     std::string toString();
 };
