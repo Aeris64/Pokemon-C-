@@ -65,24 +65,30 @@ Pokemon* Menu::getRandomPokemon(){
     int32_t now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     std::srand(now);
     int32_t pv = rand() % 100 + 100;
+    int32_t pvMax = pv;
     int32_t atk = rand() % 100;
-    int32_t atkSp = rand() % 100;
-    int32_t def = rand() % 100;
-    int32_t defSp = rand() % 100;
-    int32_t speed = rand() % 100;
+    if(atk < 50) atk = 50;
+    int32_t atkSp = rand() % 100 + 1;
+    if(atkSp < 50) atkSp = 50;
+    int32_t def = rand() % 100 + 1;
+    if(def < 50) def = 50;
+    int32_t defSp = rand() % 100 + 1;
+    if(defSp < 50) defSp = 50;
+    int32_t speed = rand() % 100 + 1;
 
     std::vector<Attack*> listeAtk;
 
     for (int i = 0; i < 4; i++)
         listeAtk.push_back(this->getRandomAttack(nationPokemon->getType()));
 
-    return new Pokemon(nationPokemon->getId(), nationPokemon->getNom(), pv, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], nationPokemon->getType());
+    return new Pokemon(nationPokemon->getId(), nationPokemon->getNom(), pv, pvMax, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], nationPokemon->getType());
 }
 
 Pokemon* Menu::getRandomPokemon(DBPokemon* dbPokemon){
     int32_t now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     std::srand(now);
     int32_t pv = rand() % 100 + 100;
+    int32_t pvMax = pv;
     int32_t atk = rand() % 100 + 1;
     if(atk < 50) atk = 50;
     int32_t atkSp = rand() % 100 + 1;
@@ -97,7 +103,7 @@ Pokemon* Menu::getRandomPokemon(DBPokemon* dbPokemon){
     for (int i = 0; i < 4; i++)
         listeAtk.push_back(this->getRandomAttack(dbPokemon->getType()));
 
-    return new Pokemon(dbPokemon->getId(), dbPokemon->getNom(), pv, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], dbPokemon->getType());
+    return new Pokemon(dbPokemon->getId(), dbPokemon->getNom(), pv, pvMax, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], dbPokemon->getType());
 }
 
 bool Menu::getIntro(){
@@ -210,12 +216,12 @@ bool Menu::Battle(){
                             float damage = battlePokemon->setDamage(yourPokemon, yourPokemon->getAtk1());
                             // int damage = battlePokemon->getPv() - (yourPokemon->getAtk1()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
                             // battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk1()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
-                            std::cout << yourPokemon->getAtk1()->getNom() << " inflige " << damage <<std::endl;
+                            std::cout << "> " <<yourPokemon->getAtk1()->getNom() << " inflige " << damage <<std::endl;
                         }
                         else{
                             std::cout << "Attaque ratee !" << std::endl;
                         }
-
+                        this->Riposte(battlePokemon, yourPokemon);
                         break;
                     case 2:
                         randAccuracy = rand() % 100;
@@ -230,6 +236,7 @@ bool Menu::Battle(){
                         else{
                             std::cout << "Attaque ratee !" << std::endl;
                         }
+                        this->Riposte(battlePokemon, yourPokemon);
                         break;
                     case 3:
                         randAccuracy = rand() % 100;
@@ -243,7 +250,8 @@ bool Menu::Battle(){
                         }
                         else{
                             std::cout << "Attaque ratee !" << std::endl;
-                        }                    
+                        }      
+                        this->Riposte(battlePokemon, yourPokemon);                                      
                         break;
                     case 4:
                         randAccuracy = rand() % 100;
@@ -258,6 +266,7 @@ bool Menu::Battle(){
                         else{
                             std::cout << "Attaque ratee !" << std::endl;
                         }
+                        this->Riposte(battlePokemon, yourPokemon);                        
                         break;
                 }
                 break;
@@ -266,23 +275,25 @@ bool Menu::Battle(){
                 randCaught = rand() % 100;
 
                 if(caughtChances > randCaught){
-                    std::cout << "Bravo ! Vous avez capturé un " << battlePokemon->getNom() << std::endl;
+                    std::cout << " Bravo ! Vous avez capture un " << battlePokemon->getNom() << std::endl;
                     if(player->getPokemonTeam().size() >= 6){
                         player->addPokemonAll(battlePokemon);
-                        std::cout << battlePokemon->getNom() << " a été envoyé dans le PC" << std::endl;
+                        std::cout << battlePokemon->getNom() << " a ete envoye dans le PC" << std::endl;
                     }
                     else{
                         player->addPokemonTeam(battlePokemon);
-                        std::cout << battlePokemon->getNom() << " rejoint votre équipe !" << std::endl;
+                        std::cout << battlePokemon->getNom() << " rejoint votre equipe !" << std::endl;
                     }
                     forceEnd = true;
                 }
                 else{
-                    std::cout << "Ah, mince ! Presque !" << std::endl;
+                    std::cout << " Ah, mince ! Presque !" << std::endl;
+                    this->Riposte(battlePokemon, yourPokemon); 
                 }
 
                 break;
             case 3:
+                std::cout << "Il est actuellement 23h02, on en peut plus ._." << std::endl;
                 break;
             case 4:
                 std::cout << "Vous fuyez le combat." << std::endl;
@@ -294,6 +305,18 @@ bool Menu::Battle(){
         }
         battlePokemon->toString();
 
+
+    } while(yourPokemon->getPv() > 0 && battlePokemon->getPv() > 0 && forceEnd != true);
+
+    battlePokemon->toString();
+
+    return 1;
+}
+
+bool Menu::Riposte(Pokemon* battlePokemon, Pokemon* yourPokemon){
+        
+        int randAccuracy;
+        int pkmnAccur;
         std::cout << "Votre adversaire riposte ! Attention !" << std::endl;
         randAccuracy = rand() % 100;
         switch(rand() % 4 + 1){
@@ -339,11 +362,7 @@ bool Menu::Battle(){
                 break;
         }
 
-    } while(battlePokemon->getPv() > 0 && forceEnd != true);
-
-    battlePokemon->toString();
-
-    return 1;
+        return 1;
 }
 
 bool Menu::MyTeam(){

@@ -74,13 +74,14 @@ Attack* skill30 = new Attack(30,"Poing de feu",60,15,70,feu);
 Attack* skill31 = new Attack(31,"Belier",90,5,70,normal);
 Attack* skill32 = new Attack(32,"Coup d'jus",50,15,90,elec);
 Attack* skill33 = new Attack(33,"Fatal Foudre",90,5,70,elec);
-Attack* skill34 = new Attack(34,"Force cachee",30,10,90,normal);
-Attack* skill35 = new Attack(35,"Masse d'os",50,15,90,sol);
-Attack* skill36 = new Attack(36,"Seisme",90,5,70,sol);
-Attack* skill37 = new Attack(37,"Coud'boue",30,10,90,sol);
-Attack* skill38 = new Attack(38,"Chatiment",50,15,90,spectre);
-Attack* skill39 = new Attack(39,"Rayon spectral",90,5,70,spectre);
-Attack* skill40 = new Attack(40,"Ombre portee",30,10,90,spectre);
+
+// Attack* skill34 = new Attack(34,"Force",30,10,90,normal);
+// Attack* skill35 = new Attack(35,"Masse d'os",50,15,90,sol);
+// Attack* skill36 = new Attack(36,"Seisme",90,5,70,sol);
+// Attack* skill37 = new Attack(37,"Coud'boue",30,10,90,sol);
+// Attack* skill38 = new Attack(38,"Chatiment",50,15,90,spectre);
+// Attack* skill39 = new Attack(39,"Rayon spectral",90,5,70,spectre);
+// Attack* skill40 = new Attack(40,"Ombre portee",30,10,90,spectre);
 
 play->addAttack(skill1);
 play->addAttack(skill2);
@@ -115,13 +116,14 @@ play->addAttack(skill30);
 play->addAttack(skill31);
 play->addAttack(skill32);
 play->addAttack(skill33);
-play->addAttack(skill34);
-play->addAttack(skill35);
-play->addAttack(skill36);
-play->addAttack(skill37);
-play->addAttack(skill38);
-play->addAttack(skill39);
-play->addAttack(skill40);
+
+// play->addAttack(skill34);
+// play->addAttack(skill35);
+// play->addAttack(skill36);
+// play->addAttack(skill37);
+// play->addAttack(skill38);
+// play->addAttack(skill39);
+// play->addAttack(skill40);
 
 //(id, nom, type)
 DBPokemon* no1 = new DBPokemon(1, "Salameche", feu);

@@ -53,6 +53,14 @@ int main(int argc, char *argv[]) {
 				play->Battle();
 				break;
 			case 4:
+				for(int i = 0 ; i<play->getPlayer()->getPokemonTeam().size() ; i++){
+					play->getPlayer()->getPokemonTeam(i)->setPv(play->getPlayer()->getPokemonTeam(i)->getPvMax());
+				}
+				std::cout << "Tout les pokemons de l'equipe ont ete soignes." << std::endl;
+				for(int i = 0 ; i<play->getPlayer()->getPokemonAll().size() ; i++){
+					play->getPlayer()->getPokemonAll(i)->setPv(play->getPlayer()->getPokemonAll(i)->getPvMax());
+				}			
+				std::cout << "Tout les pokemons du PC ont ete soignes." << std::endl;					
 				break;
 			case 9:
 				break;

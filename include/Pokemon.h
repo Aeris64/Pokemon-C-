@@ -9,6 +9,7 @@
 class Pokemon : public DBPokemon {
 private:
     int32_t pv;
+    int32_t pvMax;
     int32_t atk;
     int32_t atkSp;
     int32_t def;
@@ -26,12 +27,13 @@ private:
 
 public:
     Pokemon();
-    Pokemon(int32_t id, std::string nom, int32_t pv, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type);
+    Pokemon(int32_t id, std::string nom, int32_t pv, int32_t pvMax, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type);
     Pokemon(Pokemon const& pokemon);
     ~Pokemon();
 
     /* getters */
     int32_t getPv();
+    int32_t getPvMax();
     int32_t getAtk();
     int32_t getAtkSp();
     int32_t getDef();
@@ -45,6 +47,7 @@ public:
 
     /* setters */
     void setPv(int32_t pv);
+    void setPvMax(int32_t pvMax);
     void setAtk(int32_t atk);
     void setAtkSp(int32_t atkSp);
     void setDef(int32_t def);

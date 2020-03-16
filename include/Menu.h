@@ -41,6 +41,7 @@ public:
     Pokemon* getRandomPokemon(DBPokemon* dbPokemon);
 
     bool getIntro();
+    bool Riposte(Pokemon* battlePokemon, Pokemon* yourPokemon);
 
     /* setters */
     void addPokemon(void* dbPokemon);
