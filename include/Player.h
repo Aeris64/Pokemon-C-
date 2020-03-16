@@ -2,17 +2,20 @@
 #define PLAYER_INCLUDED_H
 
 #include <string>
+#include <vector>
+
+#include "Pokemon.h"
 
 class Player {
 private:
     int32_t id;
     std::string nom;
-    // Liste pokémon capturé
-    // Liste pokémon team
+    std::vector<Pokemon*> teamPokemon;
+    std::vector<Pokemon*> myPokemon;
 
 public:
     Player();
-    Player(int32_t id, std::string nom);
+    Player(int32_t id, std::string nom, std::vector<Pokemon*> teamPokemon, std::vector<Pokemon*> myPokemon);
     Player(Player const& player);
     ~Player();
 

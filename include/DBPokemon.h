@@ -12,6 +12,9 @@ private:
     std::string nom;
     Type* type;
 
+    /* Sert de flag pour savoir si on a créé nous même l'auteur ou s'il a été créé via un pointeur passé en paramètre */
+    int8_t selfCreatedType = 0;
+
 public:
     DBPokemon();
     DBPokemon(int id, std::string nom, Type* type);
