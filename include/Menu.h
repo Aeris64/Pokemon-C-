@@ -7,6 +7,7 @@
 #include "DBPokemon.h"
 #include "Type.h"
 #include "Attack.h"
+#include "Pokemon.h"
 
 class Menu {
 private:
