@@ -19,11 +19,12 @@ int main(int argc, char *argv[]) {
 	do{
 		std::cin >> choice;
 
-		if(choice > 4){
+		if(choice != 1 && choice !=2 && choice != 3 && choice != 4 || std::isnan(choice))
+		{
 			std::cout << "Choix invalide" << std::endl;
 		}
 
-	}while(choice != 1 || choice != 2 || choice != 3 || choice != 4);
+	}while(choice != 1 && choice != 2 && choice != 3 && choice != 4);
 
 	std::cout << "end" << std::endl;
 	// Player* a = new Player(1, "Mura");

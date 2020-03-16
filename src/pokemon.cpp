@@ -3,7 +3,8 @@
 
 Pokemon::Pokemon()
 {
-    this->DBPokemon::DBPokemon();
+    this->setId(0);
+    this->setNom("");
     this->atk = 0;
     this->atkSp = 0;
     this->def = 0;
@@ -13,6 +14,7 @@ Pokemon::Pokemon()
     this->atk2 = new Attack();
     this->atk3 = new Attack();
     this->atk4 = new Attack();
+    this->setType(new Type());
     this->selfCreatedAttack1 = 1;
     this->selfCreatedAttack2 = 1;
     this->selfCreatedAttack3 = 1;
@@ -21,7 +23,8 @@ Pokemon::Pokemon()
 
 Pokemon::Pokemon(int32_t id, std::string nom, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type)
 {
-    this->DBPokemon::DBPokemon(id, nom, type);
+    this->setId(id);
+    this->setNom(nom);
     this->atk = atk;
     this->atkSp = atkSp;
     this->def = def;
@@ -31,11 +34,13 @@ Pokemon::Pokemon(int32_t id, std::string nom, int32_t atk, int32_t atkSp, int32_
     this->atk2 = atk2;
     this->atk3 = atk3;
     this->atk4 = atk4;
+    this->setType(type);
 }
 
 Pokemon::Pokemon(Pokemon const& pokemon)
 {
-    this->DBPokemon::DBPokemon(pokemon.id, pokemon.nom, pokemon.type);
+    this->setId(id);
+    this->setNom(nom);
     this->atk = pokemon.atk;
     this->atkSp = pokemon.atkSp;
     this->def = pokemon.def;
@@ -45,6 +50,7 @@ Pokemon::Pokemon(Pokemon const& pokemon)
     this->atk2 = pokemon.atk2;
     this->atk3 = pokemon.atk3;
     this->atk4 = pokemon.atk4;
+    this->setType(type);
 }
 
 /* getters */
