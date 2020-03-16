@@ -2,9 +2,22 @@
 #include "Pokemon.h"
 #include "Attack.h"
 
-Menu::Menu()
-{
+Menu::Menu(){}
 
+bool Menu::Battle(){
+    // oooh. Vous rencontrez un pokémon au hasard !
+    Pokemon* battlePokemon = getRandomPokemon();
+
+    battlePokemon->toString();
+
+    do{
+        battlePokemon->setPv(battlePokemon->getPv()-10);
+        battlePokemon->toString();
+    } while(battlePokemon->getPv() > 0);
+
+    battlePokemon->toString();
+
+    return 1;
 }
 
 /* getters */
