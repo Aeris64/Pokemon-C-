@@ -54,6 +54,13 @@ Attack* Menu::getRandomAttack(){
     return getAttack(random);
 }
 
+// Attack* Menu::getRandomAttackByType(Type type){
+//     int32_t size = this->allAttacks.size();
+//     int32_t random = rand() % size;
+
+//     return getAttack(random);
+// }
+
 Pokemon* Menu::getRandomPokemon(){
     DBPokemon* nationPokemon = getRandomDBPokemon();
     int32_t pv = rand() % 100 + 100;
@@ -69,6 +76,22 @@ Pokemon* Menu::getRandomPokemon(){
         listeAtk.push_back(this->getRandomAttack());
 
     return new Pokemon(nationPokemon->getId(), nationPokemon->getNom(), pv, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], nationPokemon->getType());
+}
+
+Pokemon* Menu::createRandomPokemon(DBPokemon dbPokemon){
+    int32_t pv = rand() % 100 + 100;
+    int32_t atk = rand() % 100;
+    int32_t atkSp = rand() % 100;
+    int32_t def = rand() % 100;
+    int32_t defSp = rand() % 100;
+    int32_t speed = rand() % 100;
+
+    std::vector<Attack*> listeAtk;
+
+    for (int i = 0; i < 4; i++)
+        listeAtk.push_back(this->getRandomAttack());
+
+    return new Pokemon(dbPokemon.getId(), dbPokemon.getNom(), pv, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], dbPokemon.getType());
 }
 
 /* setters */
