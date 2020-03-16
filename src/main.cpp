@@ -8,7 +8,7 @@
 #include "Pokedex.h"
 
 int main(int argc, char *argv[]) {
-
+	int createdIndex = 1;
 	std::string playername;
 	std::vector<Pokemon*> allCaughtPokemons;
 	std::vector<Pokemon*> teamPokemons;
@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
 
 	int choice;
 
+
 	do{
 		std::cin >> choice;
 
@@ -41,18 +42,15 @@ int main(int argc, char *argv[]) {
 		}
 
 	}while(choice != 1 && choice != 2 && choice != 3);
-	std::string selected;
-	if(choice == 1){
-		selected = "Salameche";
-	}
-	else if(choice == 2){
-		selected = "Carapuce";
-	}
-	else if(choice == 3){
-		selected = "Bulbizarre";
-	}
 
-	std::cout << "Oh, tu as donc choisi " << selected << "." << std::endl;
+	DBPokemon* selectedPkmn = play->getDBPokemon(choice - 1);
+	std::string pkmnName = selectedPkmn->getNom();
+
+	Pokemon* createdPkmn = new Pokemon();
+
+	createdIndex++;
+
+	std::cout << "Oh, tu as donc choisi " << pkmnName << "." << std::endl;
 	std::cout << "Bonne chance. Tu vas en avoir besoin." << std::endl;
 	std::cout << "___________________________________" << std::endl;
 
