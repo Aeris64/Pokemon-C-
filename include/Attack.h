@@ -7,12 +7,13 @@
 
 class Attack {
 private:
-    int id;
+    int32_t id;
     std::string nom;
-    int power;
-    int pp;
-    int accuracy;
+    int32_t power;
+    int32_t pp;
+    int32_t accuracy;
     Type* type;
+    int8_t selfCreatedType = 0;
 
 public:
     Attack();
