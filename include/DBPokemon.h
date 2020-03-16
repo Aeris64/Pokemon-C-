@@ -8,7 +8,7 @@
 
 class DBPokemon {
 private:
-    int id;
+    int32_t id;
     std::string nom;
     Type* type;
 
@@ -17,17 +17,17 @@ private:
 
 public:
     DBPokemon();
-    DBPokemon(int id, std::string nom, Type* type);
+    DBPokemon(int32_t id, std::string nom, Type* type);
     DBPokemon(DBPokemon const& dbPokemon);
     ~DBPokemon();
 
     /* getters */
-    int getId();
+    int32_t getId();
     std::string getNom();
     Type* getType();
 
     /* setters */
-    void setId(int id);
+    void setId(int32_t id);
     void setNom(std::string nom);
     void setType(Type* Type);
 
