@@ -7,7 +7,7 @@
 #include "Attack.h"
 
 class DBPokemon {
-private:
+protected:
     int32_t id;
     std::string nom;
     Type* type;

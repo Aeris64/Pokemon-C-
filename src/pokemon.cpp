@@ -1,28 +1,27 @@
 #include "Pokemon.h"
 #include "DBPokemon.h"
 
-// Pokemon::Pokemon()
-// {
-//     this->atk = 0;
-//     this->atkSp = 0;
-//     this->def = 0;
-//     this->defSp = 0;
-//     this->speed = 0;
-//     this->atk1 = new Attack();
-//     this->atk2 = new Attack();
-//     this->atk3 = new Attack();
-//     this->atk4 = new Attack();
-//     this->selfCreatedAttack1 = 1;
-//     this->selfCreatedAttack2 = 1;
-//     this->selfCreatedAttack3 = 1;
-//     this->selfCreatedAttack4 = 1;
-// }
+Pokemon::Pokemon()
+{
+    this->DBPokemon::DBPokemon();
+    this->atk = 0;
+    this->atkSp = 0;
+    this->def = 0;
+    this->defSp = 0;
+    this->speed = 0;
+    this->atk1 = new Attack();
+    this->atk2 = new Attack();
+    this->atk3 = new Attack();
+    this->atk4 = new Attack();
+    this->selfCreatedAttack1 = 1;
+    this->selfCreatedAttack2 = 1;
+    this->selfCreatedAttack3 = 1;
+    this->selfCreatedAttack4 = 1;
+}
 
-//Pokemon::Pokemon(int32_t id, st int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4)
 Pokemon::Pokemon(int32_t id, std::string nom, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type)
 {
-    this->setId(id);
-    this->setNom(nom);
+    this->DBPokemon::DBPokemon(id, nom, type);
     this->atk = atk;
     this->atkSp = atkSp;
     this->def = def;
@@ -32,17 +31,21 @@ Pokemon::Pokemon(int32_t id, std::string nom, int32_t atk, int32_t atkSp, int32_
     this->atk2 = atk2;
     this->atk3 = atk3;
     this->atk4 = atk4;
-    this->setType(type);
 }
 
-// Attack::Attack(Attack const& attack)
-// {
-//     this->nom = attack.nom;
-//     this->power = attack.power;
-//     this->pp = attack.pp;
-//     this->accuracy = attack.accuracy;
-//     this->type = attack.type;
-// }
+Pokemon::Pokemon(Pokemon const& pokemon)
+{
+    this->DBPokemon::DBPokemon(pokemon.id, pokemon.nom, pokemon.type);
+    this->atk = pokemon.atk;
+    this->atkSp = pokemon.atkSp;
+    this->def = pokemon.def;
+    this->defSp = pokemon.defSp;
+    this->speed = pokemon.speed;
+    this->atk1 = pokemon.atk1;
+    this->atk2 = pokemon.atk2;
+    this->atk3 = pokemon.atk3;
+    this->atk4 = pokemon.atk4;
+}
 
 /* getters */
 int32_t Pokemon::getAtk()
@@ -88,6 +91,10 @@ Attack* Pokemon::getAtk3()
 Attack* Pokemon::getAtk4()
 {
     return this->atk4;
+}
+DBPokemon* Pokemon::getDBPokemon()
+{
+    return new DBPokemon(this->id, this->nom, this->type);
 }
 
 /* setters */
