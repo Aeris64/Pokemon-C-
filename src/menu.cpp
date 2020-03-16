@@ -46,15 +46,16 @@ Attack* Menu::getRandomAttack(){
 Attack* Menu::getRandomAttack(Type* type){
     int32_t size = this->allAttacks.size();
     int32_t random = rand() % size;
-    Attack* myAttack = getAttack(random);
+    Attack* myAttack;
     bool boolean = false;
 
     do {
         int32_t random = rand() % size;
-        Attack* myAttack = getAttack(random);
+        myAttack = getAttack(random);
         if(myAttack->getType()->getId() == type->getId() || myAttack->getType()->getId() == 8)
             boolean = true;
     } while(!(boolean));
+
     return myAttack;
 }
 
@@ -148,6 +149,7 @@ bool Menu::Battle(){
     int pkmnAccur;
     int caughtChances = 30;
     int randCaught;
+    bool forceEnd = false;
 
     Pokemon* battlePokemon = getRandomPokemon();
     
@@ -197,7 +199,7 @@ bool Menu::Battle(){
                             int damage = battlePokemon->getPv() - (yourPokemon->getAtk1()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
                             battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk1()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
 
-                            std::cout << yourPokemon->getAtk1()->getNom() << " inflige " << damage << std::endl;
+                            std::cout << yourPokemon->getAtk1()->getNom() << " inflige " << damage << " dégats" <<std::endl;
                         }
                         else{
                             std::cout << "Attaque ratée !" << std::endl;
@@ -262,6 +264,7 @@ bool Menu::Battle(){
                         player->addPokemonTeam(battlePokemon);
                         std::cout << battlePokemon->getNom() << " rejoint votre équipe !" << std::endl;
                     }
+                    forceEnd = true;
                 }
                 else{
                     std::cout << "Ah, mince ! Presque !" << std::endl;
@@ -277,7 +280,7 @@ bool Menu::Battle(){
                 break;
         }
         battlePokemon->toString();
-    } while(battlePokemon->getPv() > 0);
+    } while(battlePokemon->getPv() > 0 && forceEnd != true);
 
     battlePokemon->toString();
 
