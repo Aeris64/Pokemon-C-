@@ -55,7 +55,7 @@ Pokemon* Menu::getRandomPokemon(){
     for (int i = 0; i < 4; i++)
         listeAtk.push_back(this->getRandomAttack());
 
-    return new Pokemon(nationPokemon->getId(), nationPokemon->getNom, pv, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], nationPokemon->getType());
+    return new Pokemon(nationPokemon->getId(), nationPokemon->getNom(), pv, atk, atkSp, def, defSp, speed, listeAtk[0], listeAtk[1], listeAtk[2], listeAtk[3], nationPokemon->getType());
 }
 
 /* setters */
