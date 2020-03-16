@@ -24,7 +24,7 @@ private:
 
 public:
     // Pokemon();
-    Pokemon(int32_t id, std::string nom, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type) : DBPokemon(id, nom, type){};
+    Pokemon(int32_t id, std::string nom, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type);
     // Pokemon(Pokemon const& pokemon);
     ~Pokemon();
 
