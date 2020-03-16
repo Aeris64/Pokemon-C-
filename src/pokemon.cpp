@@ -167,9 +167,6 @@ float Pokemon::setDamage(Pokemon* pokemon, Attack* attack)
 {
     int myDef = this->getDef();
     int atk = attack->getPower()+pokemon->getAtk();
-    
-    std::cout << "atk: " << attack->getPower() << " " << pokemon->getAtk() << std::endl;
-    std::cout << "atk: " << atk << " - def: " << myDef << std::endl;
 
     float final = atk - myDef;
 

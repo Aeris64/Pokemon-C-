@@ -3,6 +3,7 @@
 #include "Pokemon.h"
 #include "Attack.h"
 #include "Player.h"
+#include <chrono>
 
 Menu::Menu(){}
 
@@ -61,7 +62,8 @@ Attack* Menu::getRandomAttack(Type* type){
 
 Pokemon* Menu::getRandomPokemon(){
     DBPokemon* nationPokemon = getRandomDBPokemon();
-    std::srand(69);
+    int32_t now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    std::srand(now);
     int32_t pv = rand() % 100 + 100;
     int32_t atk = rand() % 100;
     int32_t atkSp = rand() % 100;
@@ -78,12 +80,17 @@ Pokemon* Menu::getRandomPokemon(){
 }
 
 Pokemon* Menu::getRandomPokemon(DBPokemon* dbPokemon){
-    std::srand(42);
+    int32_t now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    std::srand(now);
     int32_t pv = rand() % 100 + 100;
     int32_t atk = rand() % 100 + 1;
+    if(atk < 50) atk = 50;
     int32_t atkSp = rand() % 100 + 1;
+    if(atkSp < 50) atkSp = 50;
     int32_t def = rand() % 100 + 1;
+    if(def < 50) def = 50;
     int32_t defSp = rand() % 100 + 1;
+    if(defSp < 50) defSp = 50;
     int32_t speed = rand() % 100 + 1;
 
     std::vector<Attack*> listeAtk;
@@ -145,7 +152,9 @@ bool Menu::getIntro(){
 }
 
 bool Menu::Battle(){
-    // oooh. Vous rencontrez un pokémon au hasard !
+    int32_t now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    std::srand(now);
+
     int choice;
     int randAccuracy;
     int pkmnAccur;
@@ -201,7 +210,6 @@ bool Menu::Battle(){
                             float damage = battlePokemon->setDamage(yourPokemon, yourPokemon->getAtk1());
                             // int damage = battlePokemon->getPv() - (yourPokemon->getAtk1()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
                             // battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk1()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
-
                             std::cout << yourPokemon->getAtk1()->getNom() << " inflige " << damage <<std::endl;
                         }
                         else{
@@ -217,7 +225,6 @@ bool Menu::Battle(){
                             float damage = battlePokemon->setDamage(yourPokemon, yourPokemon->getAtk2());
                             // int damage = battlePokemon->getPv() - (yourPokemon->getAtk2()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
                             // battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk2()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
-
                             std::cout << yourPokemon->getAtk2()->getNom() << " inflige " << damage << std::endl;
                         }
                         else{
@@ -232,7 +239,6 @@ bool Menu::Battle(){
                             float damage = battlePokemon->setDamage(yourPokemon, yourPokemon->getAtk3());
                             // int damage = battlePokemon->getPv() - (yourPokemon->getAtk3()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
                             // battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk3()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
-
                             std::cout << yourPokemon->getAtk3()->getNom() << " inflige " << damage << std::endl;
                         }
                         else{
@@ -247,7 +253,6 @@ bool Menu::Battle(){
                             float damage = battlePokemon->setDamage(yourPokemon, yourPokemon->getAtk4());
                             // int damage = battlePokemon->getPv() - (yourPokemon->getAtk4()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
                             // battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk4()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
-
                             std::cout << yourPokemon->getAtk4()->getNom() << " inflige " << damage << std::endl;
                         }
                         else{
@@ -288,6 +293,52 @@ bool Menu::Battle(){
                 break;
         }
         battlePokemon->toString();
+
+        std::cout << "Votre adversaire riposte ! Attention !" << std::endl;
+        randAccuracy = rand() % 100;
+        switch(rand() % 4 + 1){
+            case 1:
+                pkmnAccur = battlePokemon->getAtk1()->getAccuracy();
+
+                if(pkmnAccur > randAccuracy){
+                    float damage = yourPokemon->setDamage(battlePokemon, battlePokemon->getAtk4());
+                    std::cout << battlePokemon->getAtk1()->getNom() << " inflige " << damage << std::endl;
+                } else {
+                    std::cout << "Attaque ratee !" << std::endl;
+                }
+                break;
+            case 2:
+                pkmnAccur = battlePokemon->getAtk2()->getAccuracy();
+
+                if(pkmnAccur > randAccuracy){
+                    float damage = yourPokemon->setDamage(battlePokemon, battlePokemon->getAtk4());
+                    std::cout << battlePokemon->getAtk2()->getNom() << " inflige " << damage << std::endl;
+                } else {
+                    std::cout << "Attaque ratee !" << std::endl;
+                }
+                break;
+            case 3:
+                pkmnAccur = battlePokemon->getAtk3()->getAccuracy();
+
+                if(pkmnAccur > randAccuracy){
+                    float damage = yourPokemon->setDamage(battlePokemon, battlePokemon->getAtk4());
+                    std::cout << battlePokemon->getAtk3()->getNom() << " inflige " << damage << std::endl;
+                } else {
+                    std::cout << "Attaque ratee !" << std::endl;
+                }
+                break;
+            case 4:
+                pkmnAccur = battlePokemon->getAtk4()->getAccuracy();
+
+                if(pkmnAccur > randAccuracy){
+                    float damage = yourPokemon->setDamage(battlePokemon, battlePokemon->getAtk4());
+                    std::cout << battlePokemon->getAtk4()->getNom() << " inflige " << damage << std::endl;
+                } else {
+                    std::cout << "Attaque ratee !" << std::endl;
+                }
+                break;
+        }
+
     } while(battlePokemon->getPv() > 0 && forceEnd != true);
 
     battlePokemon->toString();
