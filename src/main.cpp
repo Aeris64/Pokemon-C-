@@ -29,17 +29,18 @@ int main(int argc, char *argv[]) {
 		switch(choice){
 			case 1:
 				for(int i = 0 ; i<play->getPlayer()->getPokemonAll().size() ; i++){
-					Pokemon* acutalPokemon = play->getPlayer()->getPokemonAll(i);
-					std::cout << i << " " << acutalPokemon->toString() << std::endl;
+					Pokemon* actualPokemon = play->getPlayer()->getPokemonAll(i);
+					std::cout << i << " " << actualPokemon->toString() << std::endl;
 				}
 				break;
 			case 2:
 				for(int i = 0 ; i<play->getPlayer()->getPokemonTeam().size() ; i++){
-					Pokemon* acutalPokemon = play->getPlayer()->getPokemonTeam(i);
-					std::cout << i << " " << acutalPokemon->toString() << std::endl;
+					Pokemon* actualPokemon = play->getPlayer()->getPokemonTeam(i);
+					std::cout << i << " " << actualPokemon->toString() << std::endl;
 				}
 				break;
 			case 3:
+				play->Battle();
 				break;
 			case 4:
 				break;

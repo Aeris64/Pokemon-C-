@@ -25,8 +25,7 @@ Player* Menu::getPlayer(){
 
 DBPokemon* Menu::getRandomDBPokemon(){
     int32_t size = this->allPokemons.size();
-    int32_t random = rand() % size;
-
+    int32_t random = rand() % size -1;
     return getDBPokemon(random);
 }
 
@@ -47,7 +46,7 @@ Attack* Menu::getRandomAttack(){
 Attack* Menu::getRandomAttack(Type* type){
     int32_t size = this->allAttacks.size();
     int32_t random = rand() % size;
-    Attack* myAttack;
+    Attack* myAttack = getAttack(random);
     bool boolean = false;
 
     do {
@@ -57,6 +56,7 @@ Attack* Menu::getRandomAttack(Type* type){
         if(myAttack->getType()->getId() == type->getId() || myAttack->getType()->getId() == 8)
             boolean = true;
     } while(!(boolean));
+    std::cout << myAttack->getNom() << std::endl;
     return myAttack;
 }
 
@@ -145,17 +145,109 @@ bool Menu::getIntro(){
 
 bool Menu::Battle(){
     // oooh. Vous rencontrez un pokémon au hasard !
+    int choice;
+    int randAccuracy;
+    int pkmnAccur;
     Pokemon* battlePokemon = getRandomPokemon();
     
-    Pokemon* yourPokemon = this->player->getPokemonTeam(1);
+    Pokemon* yourPokemon = this->player->getPokemonTeam(0);
     
     battlePokemon->toString();
 
-    std::cout << "Un " << battlePokemon->getNom() << " sauvage apparait !";
-    std::cout << "Ton pokémon : " << yourPokemon->getNom() << ".";
+    std::cout << "Un " << battlePokemon->getNom() << " sauvage apparait !" << std::endl;
+    std::cout << "Ton pokémon : " << yourPokemon->getNom() << "." << std::endl;
 
     do{
-        battlePokemon->setPv(battlePokemon->getPv()-10);
+        std::cout << "PV de " << battlePokemon->getNom() << " : " << battlePokemon->getPv() << std::endl;
+        std::cout << "PV de " << yourPokemon->getNom() << " : " << yourPokemon->getPv() << std::endl;
+
+        std::cout << "[1] Attaque" << std::endl;
+        std::cout << "[2] Capture" << std::endl;
+        std::cout << "[3] Changer de pokemon" << std::endl;
+        std::cout << "[4] Fuite" << std::endl;
+
+        std::cin >> choice;
+
+        switch(choice){
+            case 1:
+                std::cout << "[1]" << yourPokemon->getAtk1()->getNom() << std::endl;
+                std::cout << "[2]" << yourPokemon->getAtk2()->getNom() << std::endl;
+                std::cout << "[3]" << yourPokemon->getAtk3()->getNom() << std::endl;
+                std::cout << "[4]" << yourPokemon->getAtk4()->getNom() << std::endl;
+
+                std::cin >> choice;
+
+                switch(choice){
+                    case 1:
+                        randAccuracy = rand();
+                        pkmnAccur = yourPokemon->getAtk1()->getAccuracy();
+
+                        if(pkmnAccur > randAccuracy){
+                            int damage = battlePokemon->getPv() - (yourPokemon->getAtk1()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
+                            battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk1()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
+
+                            std::cout << yourPokemon->getAtk1()->getNom() << " inflige " << damage << std::endl;
+                        }
+                        else{
+                            std::cout << "Attaque ratée !" << std::endl;
+                        }
+
+                        break;
+                    case 2:
+                        randAccuracy = rand();
+                        pkmnAccur = yourPokemon->getAtk2()->getAccuracy();
+
+                        if(pkmnAccur > randAccuracy){
+                            int damage = battlePokemon->getPv() - (yourPokemon->getAtk2()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
+                            battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk2()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
+
+                            std::cout << yourPokemon->getAtk2()->getNom() << " inflige " << damage << std::endl;
+                        }
+                        else{
+                            std::cout << "Attaque ratée !" << std::endl;
+                        }
+                        break;
+                    case 3:
+                        randAccuracy = rand();
+                        pkmnAccur = yourPokemon->getAtk3()->getAccuracy();
+
+                        if(pkmnAccur > randAccuracy){
+                            int damage = battlePokemon->getPv() - (yourPokemon->getAtk3()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
+                            battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk3()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
+
+                            std::cout << yourPokemon->getAtk3()->getNom() << " inflige " << damage << std::endl;
+                        }
+                        else{
+                            std::cout << "Attaque ratée !" << std::endl;
+                        }                    
+                        break;
+                    case 4:
+                        randAccuracy = rand();
+                        pkmnAccur = yourPokemon->getAtk4()->getAccuracy();
+
+                        if(pkmnAccur > randAccuracy){
+                            int damage = battlePokemon->getPv() - (yourPokemon->getAtk4()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50);
+                            battlePokemon->setPv(battlePokemon->getPv() - (yourPokemon->getAtk4()->getPower() * yourPokemon->getAtk()) / (battlePokemon->getDef() * 50));
+
+                            std::cout << yourPokemon->getAtk4()->getNom() << " inflige " << damage << std::endl;
+                        }
+                        else{
+                            std::cout << "Attaque ratée !" << std::endl;
+                        }
+                        break;
+                }
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                std::cout << "Commande incorrecte" << std::endl;
+                break;
+        }
+        battlePokemon->setPv(battlePokemon->getPv()-50);
         battlePokemon->toString();
     } while(battlePokemon->getPv() > 0);
 
