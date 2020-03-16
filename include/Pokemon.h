@@ -8,6 +8,7 @@
 
 class Pokemon : public DBPokemon {
 private:
+    int32_t pv;
     int32_t atk;
     int32_t atkSp;
     int32_t def;
@@ -17,6 +18,7 @@ private:
     Attack* atk2;
     Attack* atk3;
     Attack* atk4;
+    
     int8_t selfCreatedAttack1 = 0;
     int8_t selfCreatedAttack2 = 0;
     int8_t selfCreatedAttack3 = 0;
@@ -24,11 +26,12 @@ private:
 
 public:
     Pokemon();
-    Pokemon(int32_t id, std::string nom, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type);
+    Pokemon(int32_t id, std::string nom, int32_t pv, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type);
     Pokemon(Pokemon const& pokemon);
     ~Pokemon();
 
     /* getters */
+    int32_t getPv();
     int32_t getAtk();
     int32_t getAtkSp();
     int32_t getDef();
@@ -41,8 +44,9 @@ public:
     DBPokemon* getDBPokemon();
 
     /* setters */
-    void setAtk(int32_t Atk);
-    void setAtkSp(int32_t AtkSp);
+    void setPv(int32_t pv);
+    void setAtk(int32_t atk);
+    void setAtkSp(int32_t atkSp);
     void setDef(int32_t def);
     void setDefSp(int32_t defSp);
     void setSpeed(int32_t speed);

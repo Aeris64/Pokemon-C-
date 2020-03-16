@@ -20,7 +20,20 @@ public:
     bool Battle();
 
     /* getters */
-    
+    std::vector<DBPokemon*> getAllPokemons();
+    std::vector<Type*> getAllTypes();
+    std::vector<Attack*> getAllAttacks();
+
+    DBPokemon* getDBPokemon(int32_t index);
+    Type* getType(int32_t index);
+    Attack* getAttack(int32_t index);
+
+    DBPokemon* getRandomDBPokemon();
+    Type* getRandomType();
+    Attack* getRandomAttack();
+
+    Pokemon* getRandomPokemon();
+
     /* setters */
     void addPokemon(void* dbPokemon);
     void addType(void* type);

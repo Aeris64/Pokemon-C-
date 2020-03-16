@@ -26,7 +26,7 @@ Type* insecte = new Type(11, "Insecte");
 Type* acier = new Type(12, "Acier");
 Type* spectre = new Type(13, "Spectre");
 
-play.addType(eau)
+play->addType(eau)
 
 //(id, nom, puissance, pp, accuracy, type)
 Attack* skill1 = new Attack(1,"Charge",20,30,90,normal);
