@@ -274,6 +274,8 @@ bool Menu::Battle(){
             case 3:
                 break;
             case 4:
+                std::cout << "Vous fuyez le combat." << std::endl;
+                forceEnd = true;
                 break;
             default:
                 std::cout << "Commande incorrecte" << std::endl;
