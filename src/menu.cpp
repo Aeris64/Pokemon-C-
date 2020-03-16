@@ -46,15 +46,16 @@ Attack* Menu::getRandomAttack(){
 Attack* Menu::getRandomAttack(Type* type){
     int32_t size = this->allAttacks.size();
     int32_t random = rand() % size;
-    Attack* myAttack = getAttack(random);
+    Attack* myAttack;
     bool boolean = false;
 
     do {
         int32_t random = rand() % size;
-        Attack* myAttack = getAttack(random);
+        myAttack = getAttack(random);
         if(myAttack->getType()->getId() == type->getId() || myAttack->getType()->getId() == 8)
             boolean = true;
     } while(!(boolean));
+
     return myAttack;
 }
 
