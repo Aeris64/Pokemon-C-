@@ -23,22 +23,21 @@ private:
     int8_t selfCreatedAttack4 = 0;
 
 public:
-    using DBPokemon::DBPokemon;
-    Pokemon();
+    // Pokemon();
     Pokemon(int32_t id, std::string nom, int32_t atk, int32_t atkSp, int32_t def, int32_t defSp, int32_t speed, Attack* atk1, Attack* atk2, Attack* atk3, Attack* atk4, Type* type) : DBPokemon(id, nom, type){};
-    Pokemon(Pokemon const& pokemon);
+    // Pokemon(Pokemon const& pokemon);
     ~Pokemon();
 
     /* getters */
-    int32_t getatk();
-    int32_t getatkSp();
-    int32_t getdef();
-    int32_t getdefSp();
+    int32_t getAtk();
+    int32_t getAtkSp();
+    int32_t getDef();
+    int32_t getDefSp();
     int32_t getSpeed();
-    Attack* getatk1();
-    Attack* getatk2();
-    Attack* getatk3();
-    Attack* getatk4();
+    Attack* getAtk1();
+    Attack* getAtk2();
+    Attack* getAtk3();
+    Attack* getAtk4();
 
     /* setters */
     void setAtk(int32_t Atk);
@@ -46,10 +45,10 @@ public:
     void setDef(int32_t def);
     void setDefSp(int32_t defSp);
     void setSpeed(int32_t speed);
-    void setatk1(Attack* atk1);
-    void setatk2(Attack* atk2);
-    void setatk3(Attack* atk3);
-    void setatk4(Attack* atk4);
+    void setAtk1(Attack* atk1);
+    void setAtk2(Attack* atk2);
+    void setAtk3(Attack* atk3);
+    void setAtk4(Attack* atk4);
 
     std::string toString();
 };
